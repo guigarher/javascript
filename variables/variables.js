@@ -48,3 +48,5 @@ let nombre2 = 'Guillermo';
 let nombre3 = `Guillermo`; //template string
 let saludo = `Hola, ${nombre1} tienes ${edad1} años y naciste en ${añoNacimiento}`; //template string con variable
 console.log(saludo);
+
+document.querySelector("body").innerHTML = `<h1>${saludo}<br> <img src="/js/img/abstract-brain-design-0410-5697445.webp" alt=""> </h1>`;
