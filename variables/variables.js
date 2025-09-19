@@ -39,3 +39,12 @@ let b = '200';
 let resultado=(a/b);
 console.log("Resultado: "+resultado);
 console.log(typeof(resultado)); //number
+
+let edad1 = 35; //number
+let añoactual = new Date().getFullYear(); 
+let añoNacimiento = añoactual - edad1; //operacion
+let nombre1 = "Guillermo";
+let nombre2 = 'Guillermo';
+let nombre3 = `Guillermo`; //template string
+let saludo = `Hola, ${nombre1} tienes ${edad1} años y naciste en ${añoNacimiento}`; //template string con variable
+console.log(saludo);
