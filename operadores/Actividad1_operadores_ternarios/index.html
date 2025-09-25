@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Operadores y Expresiones</title>
+  <link href="css/estilos.css" rel="stylesheet"/>
+</head>
+<body>
+  <h1>Calculador de notas</h1>
+  <label>Introduce tu nota:
+    <input id="notaInput" type="range" min="-1" max="11" step="1" oninput="out.value = this.value">
+    <output id="out">5</output>
+  </label>
+  <button onclick="calcular()">Calcular</button>
+  <div class="resultado"></div>
+  <div class="nota"></div>
+  <script src="js/index.js"></script>
+</body>
+</html>
