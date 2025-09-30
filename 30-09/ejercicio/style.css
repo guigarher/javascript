@@ -1,7 +1,12 @@
 *{
     box-sizing: border-box;
-    background-color: black;
-    color: rgb(24, 177, 24);
+}
+
+html, body {
+  margin: 0;
+  background: #000;
+  color: #16c60c;
+  font-family: Consolas, Menlo, monospace;
 }
 
 h1, h2 {
@@ -14,16 +19,26 @@ h1, h2 {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 90vh;
     gap: 25px;
 }
 
-.container-block {
+.container-elements, .container-info {
     border: 2px dotted rgb(24, 177, 24);
     border-radius: 8px;
     width: 400px;
+    min-height: 150px;
     text-align:justify;
     padding: 2px 25px;
+}
+
+li:hover {
+    cursor: pointer;
+    text-shadow: #16c60c 0 0 5px;
+}
+
+#salida {
+    text-align: center;
 }
 
 @media (max-width: 900px) {
