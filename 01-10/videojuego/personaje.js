@@ -19,7 +19,7 @@ export class Personaje {
     }
 
     mostrarEstado() {
-        console.log(`${this.nombre} -> Vida: ${this.vida}, Inventario: ${this.inventario.map(obj => obj.nombre).join(', ')}`);
+        console.log(`${this.nombre} -> Vida: ${this.vida} Inventario: ${this.inventario.map(obj => obj.nombre).join(', ')}`);
     }
 
 }
