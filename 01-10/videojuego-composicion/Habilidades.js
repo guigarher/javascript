@@ -7,10 +7,15 @@ export const puedeCurarse = (personaje) => ({
   }
 });
 
-export const puedeDisparar = (personaje) => ({
-  disparar: () => {
+export const puedeDisparar = (personaje, enemigo) => ({
+  disparar: (enemigo) => {
     console.log(`${personaje.nombre} dispara un proyectil!`);
+    if (enemigo != null) {
+      console.log(`y ${enemigo.nombre} ha sido alcanzado!`);
+      enemigo.vida -= 10;
+    }
   }
+       
 });
 
 export const puedeSaltar = (personaje) => ({
