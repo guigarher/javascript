@@ -3,6 +3,9 @@ let salida = document.getElementById("salida");
 let opUserAgent = document.getElementById("opUserAgent");
 let opLanguage  = document.getElementById("opLanguage");
 let opLocationpathname = document.getElementById("opLocationpathname");
+let opInnerWidth = document.getElementById("opInnerWidth");
+let opInnerHeight = document.getElementById("opInnerHeight");
+
 
 //navigator.userAgent
 opUserAgent.addEventListener("mouseover", function () {
@@ -29,4 +32,23 @@ opLocationpathname.addEventListener("mouseover", function () {
 });
 opLocationpathname.addEventListener("mouseout", function () {
   salida.textContent = "";
+});
+
+//innerWidth
+opInnerWidth.addEventListener("mouseover", function () {
+  let ancho = window.innerWidth; // leo la info
+  salida.textContent = ancho; // la muestro
+});
+
+opInnerWidth.addEventListener("mouseout", function () {
+  salida.textContent = ""; // limpio
+});
+
+//innerHeight
+opInnerHeight.addEventListener("mouseover", function () {
+  let alto = window.innerHeight; // leo la info
+  salida.textContent = alto; // la muestro
+});
+opInnerHeight.addEventListener("mouseout", function () {
+  salida.textContent = ""; // limpio
 });

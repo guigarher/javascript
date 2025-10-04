@@ -27,7 +27,7 @@ h1, h2 {
     border: 2px dotted rgb(24, 177, 24);
     border-radius: 8px;
     width: 400px;
-    min-height: 150px;
+    min-height: 200px;
     text-align:justify;
     padding: 2px 25px;
 }
