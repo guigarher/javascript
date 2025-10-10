@@ -5,9 +5,15 @@ const input = document.getElementById("cantidad");
 // La función que obtiene los datos de un Pokémon
 async function getPokemon(id) {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
   const data = await response.json();
   return data;
 }
+// Prueba de la función
+getPokemon(1).then(pokemon => console.log(pokemon));
+
 
 // Función que limpia el pokedex y pinta X pokémon
 async function mostrarPokemones(cantidad) {
