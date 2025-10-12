@@ -14,10 +14,15 @@
     <main>
         <h2>
             <label for="cantidad">Elige cuántos Pokémon quieres ver:</label>
-            <input type="number" id="cantidad" min="1" max="151">
+            <input type="number" id="cantidad" min="1" max="1025">
             <button id="mostrar">Mostrar</button>
         </h2>
-
+        <h2>
+            <label for="pokeId">Buscar por ID o nombre:</label>
+            <input id="pokeId" type="text" placeholder="Ej: 25 o pikachu">
+            <button id="mostrarId">Mostrar 1</button>
+        </h2>
+        <p id="estado"></p>
         <div id="pokedex"></div>
     </main>
     <footer></footer>
