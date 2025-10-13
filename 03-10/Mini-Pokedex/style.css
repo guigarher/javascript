@@ -30,6 +30,8 @@ main {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
+    justify-items: center;
+    margin-bottom: 30px;
 }
 
 .pokemon {
@@ -39,6 +41,8 @@ main {
     background: #f0f0f0;
     padding: 10px;
     transition: transform 0.8s ease;
+    min-width: 185px;
+    align-self: center;
 }
 
 .pokemon:hover {

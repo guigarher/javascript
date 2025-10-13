@@ -46,7 +46,7 @@ function createCardElement(pokemon) {
   const info = document.createElement("div");
   info.classList.add("info");
 
-  // Líneas "Etiqueta: valor" sin innerHTML
+  // Líneas "Etiqueta: valor" 
   function strongLine(label, value) {
     const p = document.createElement("p");
     const strong = document.createElement("strong");
@@ -59,8 +59,8 @@ function createCardElement(pokemon) {
   const tiposStr = pokemon.types.map(t => t.type.name).join(", ");
 
   info.appendChild(strongLine("Tipo",   tiposStr));
-  info.appendChild(strongLine("Altura", String(pokemon.height))); // dm en la API
-  info.appendChild(strongLine("Peso",   String(pokemon.weight))); // hg en la API
+  info.appendChild(strongLine("Altura", String(pokemon.height))); 
+  info.appendChild(strongLine("Peso",   String(pokemon.weight))); 
 
   card.appendChild(info);
   return card;
