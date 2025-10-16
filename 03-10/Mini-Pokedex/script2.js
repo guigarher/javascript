@@ -1,74 +1,95 @@
-// --- REFERENCIAS ---
-const pokedex = document.getElementById("pokedex");
-const boton   = document.getElementById("mostrar");
-const input   = document.getElementById("cantidad");
+//==============================
+//REFERENCIAS AL DOM
+//==============================
+const pokedex          = document.getElementById("pokedex");
+const estado           = document.getElementById("estado");
+const inputId          = document.getElementById("pokeId");
+const inputCantidad    = document.getElementById("cantidad");
+const btnMostrarUno    = document.getElementById("mostrarId");
+const btnMostrarVarios = document.getElementById("mostrar");
 
-// --- 1) TRAER UN POKÉMON ---
-async function getPokemon(id) {
-  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-  if (!res.ok) throw new Error(`HTTP ${res.status} (id ${id})`);
-  return await res.json();
+//==============================
+//FUNCION PEDIR 1 POKEMON
+//==============================
+async function getPokemon(idOrName) {
+  const url = "https://pokeapi.co/api/v2/pokemon/" + idOrName;
+  const res = await fetch(url);
+  if(!res.ok) {
+    throw new Error(`HTTP ${res.status} (${idOrName})`);
+    }
+    const data = await res.json();
+    return data;
 }
 
-// --- 2) TRAER MUCHOS EN PARALELO (1..count) ---
-async function fetchPokemons(count) {
-  const ids = Array.from({ length: count }, (_, i) => i + 1);
-  const promises = ids.map(id => getPokemon(id));
-  // Promise.all mantiene el orden del array de entrada
-  return await Promise.all(promises);
-  // Si quieres tolerar fallos individuales:
-  // const settled = await Promise.allSettled(promises);
-  // return settled.filter(s => s.status === "fulfilled").map(s => s.value);
+//==============================
+//FUNCION CREAR UNA TARJETA 
+//==============================
+function crearTarjeta(pokemon){
+  //array de tipos principales
+  const tipoPrincipal = pokemon.types[0].type.name;
+  //div contenedor
+  const card = document.createElement("div");
+  card.classList.add("pokemon");
+  card.classList.add(tipoPrincipal);
+  //h2 nombre
+  const h2 = document.createElement("h2");
+  h2.textContent = pokemon.name;
+  card.appendChild(h2);
+  //img
+  const img = document.createElement("img");
+  img.src = pokemon.sprites.front_default;
+  img.alt = pokemon.name;
+  card.appendChild(img);
+  //div info
+  const info = document.createElement("div");
+  info.classList.add("info");
+  card.appendChild(info);
+ // función para info con strong 
+  function strongLine(label, value) {
+    const p = document.createElement("p");
+    const strong = document.createElement("strong");
+    strong.textContent = label + ": ";
+    p.appendChild(strong);
+    p.appendChild(document.createTextNode(value));
+    return p;
+  }
+  //array de tipos
+  const tiposStr = pokemon.types.map(t => t.type.name).join(", ");
+  //añadir lineas al div info
+  info.appendChild(strongLine("Tipo",   tiposStr));
+  info.appendChild(strongLine("Altura", String(pokemon.height))); 
+  info.appendChild(strongLine("Peso",   String(pokemon.weight)));
+  //devolver tarjeta
+  return card;
 }
-
-// --- 3) RENDERIZAR UNA TARJETA (devuelve HTML string) ---
-function renderPokemonCard(pokemon) {
-  const tipo = pokemon.types[0].type.name; // ej. "fire", "water", ...
-  return `
-    <div class="pokemon ${tipo}">
-      <h2>${pokemon.name}</h2>
-      <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-      <div class="info">
-        <p><strong>Tipo:</strong> ${pokemon.types.map(t => t.type.name).join(', ')}</p>
-        <p><strong>Altura:</strong> ${pokemon.height}</p>
-        <p><strong>Peso:</strong> ${pokemon.weight}</p>
-      </div>
-    </div>
-  `;
-}
-
-// --- 4) RENDERIZAR TODA LA LISTA ---
-function renderPokemons(list) {
-  pokedex.innerHTML = list.map(renderPokemonCard).join("");
-}
-
-// --- 5) CONTROLADOR PRINCIPAL ---
-async function loadPokemons(count) {
-  pokedex.innerHTML = "<p>Cargando...</p>";
-  try {
-    const pokemons = await fetchPokemons(count);
-    renderPokemons(pokemons);
-  } catch (e) {
+//==============================
+//FUNCION MOSTRAR 1 POKEMON
+//==============================
+async function mostrarUno(){
+  //leer input
+  const id = inputId.value.trim().toLowerCase();
+  //si no hay id, salir
+  if(!id) return;
+  //vaciar pokedex
+  pokedex.innerHTML = "";
+  //mostrar estado
+  estado.textContent = "Cargando...";
+  try{
+    //llamar a getPokemon
+    const pokemon = await getPokemon(id);
+    //llamar a crearTarjeta
+    const card = crearTarjeta(pokemon);
+    //añadir tarjeta a pokedex
+    pokedex.appendChild(card);
+    //vaciar estado
+    estado.textContent = "";
+  }catch(e){
+    //si hay error, mostrarlo
     console.error(e);
-    pokedex.innerHTML = "<p>Hubo un error cargando los datos.</p>";
+    estado.textContent = "❌ No se ha encontrado ese Pokémon.";
   }
 }
-
-// --- 6) EVENTOS (click y Enter en el input) ---
-boton.addEventListener("click", () => {
-  const cantidad = Number(input.value);
-  if (cantidad > 0 && cantidad <= 151) {
-    loadPokemons(cantidad);
-  } else {
-    alert("Introduce un número entre 1 y 151");
-  }
-});
-
-input.addEventListener("keydown", (ev) => {
-  if (ev.key === "Enter") {
-    boton.click();
-  }
-});
-
-// --- OPCIONAL: prueba rápida en consola ---
-getPokemon(1).then(p => console.log("Prueba:", p.name, p.types.map(t=>t.type.name)));
+//==============================
+//BOTON MOSTRAR 1 POKEMON
+//==============================
+btnMostrarUno.addEventListener("click", mostrarUno);
