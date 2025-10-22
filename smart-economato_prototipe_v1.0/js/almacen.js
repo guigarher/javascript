@@ -47,18 +47,22 @@ btnBuscar.addEventListener('click', () => {
   const nombre = inputBusqueda.value.trim();
   if (nombre) {
     const resultado = buscarProducto(productos, nombre);
-    renderizarTabla(resultado ? [resultado] : []);
-  }
+    renderizarTabla(resultado ? resultado : []);
+  }//renderizarTabla(resultado ? [resultado] : []); si usaramos find en vez de filter
 });
 
 btnFiltrar.addEventListener('click', () => {
   const cat = selectCategoria.value;
-  // ...
+  if (cat) {
+    const filtrados = filtrarPorCategoria(productos, cat);
+    renderizarTabla(filtrados);
+  }
 });
 
 btnOrdenar.addEventListener('click', () => {
   const orden = selectOrden.value;
-  
+  const ordenados = ordenarPorPrecio(productosMostrados, orden);
+  renderizarTabla(ordenados);
 });
 
 btnStock.addEventListener('click', () => {
