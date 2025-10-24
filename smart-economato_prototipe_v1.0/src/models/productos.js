@@ -1,8 +1,8 @@
 //Esto vendrá en breve de nuestra API RestFul que montaremos con JSON Server
 
 export const productos = [
-  { id: 1, nombre: "Plátano de Canarias", precio: 0.95, stock: 220, stockMinimo: 150, categoria: { id: 1, nombre: "Frutas" }, proveedor: { nombre: "Cooperativa Agrícola del Norte", isla: "Tenerife" } },
-  { id: 2, nombre: "Mango de Mogán", precio: 2.50, stock: 80, stockMinimo: 60, categoria: { id: 1, nombre: "Frutas" }, proveedor: { nombre: "Frutas del Sur S.L.", isla: "Gran Canaria" } },
+  { id: 1, nombre: "Plátano de Canarias", precio: 0.95, stock: 140, stockMinimo: 150, categoria: { id: 1, nombre: "Frutas" }, proveedor: { nombre: "Cooperativa Agrícola del Norte", isla: "Tenerife" } },
+  { id: 2, nombre: "Mango de Mogán", precio: 2.50, stock: 50, stockMinimo: 60, categoria: { id: 1, nombre: "Frutas" }, proveedor: { nombre: "Frutas del Sur S.L.", isla: "Gran Canaria" } },
   { id: 3, nombre: "Tomate Cherry de Aldea Blanca", precio: 2.30, stock: 120, stockMinimo: 100, categoria: { id: 2, nombre: "Verduras" }, proveedor: { nombre: "Agrícola Aldea Verde", isla: "Gran Canaria" } },
   { id: 4, nombre: "Papa Bonita", precio: 2.75, stock: 90, stockMinimo: 70, categoria: { id: 2, nombre: "Verduras" }, proveedor: { nombre: "Papero Canario S.A.", isla: "Tenerife" } },
   { id: 5, nombre: "Queso Majorero D.O.P.", precio: 12.50, stock: 30, stockMinimo: 25, categoria: { id: 4, nombre: "Lácteos" }, proveedor: { nombre: "Quesería Monte Arena", isla: "Fuerteventura" } },

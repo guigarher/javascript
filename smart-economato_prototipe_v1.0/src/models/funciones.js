@@ -22,5 +22,5 @@ export function ordenarPorPrecio(productos, orden = 'asc') {
 }
 
 export function comprobarStockMinimo(productos) {
- //
+  return productos.filter(p => p.stock < p.stockMinimo);
 }

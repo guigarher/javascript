@@ -1,6 +1,7 @@
 import { productos } from './productos.js';
 import { filtrarPorCategoria, buscarProducto, ordenarPorPrecio, comprobarStockMinimo } from './funciones.js';
 
+const controles = document.querySelector('.controles');
 const tabla = document.querySelector('#tablaProductos tbody');
 const resumen = document.querySelector('#resumen');
 const inputBusqueda = document.querySelector('#busqueda');
@@ -66,7 +67,8 @@ btnOrdenar.addEventListener('click', () => {
 });
 
 btnStock.addEventListener('click', () => {
-  
+  const bajos = comprobarStockMinimo(productos);
+  renderizarTabla(bajos);
 });
 
 btnMostrarTodos.addEventListener('click', () => {
@@ -77,3 +79,24 @@ btnMostrarTodos.addEventListener('click', () => {
 });
 
 renderizarTabla(productos);
+
+controles.addEventListener('click', (e) => {
+  const id = e.target.id;
+  switch (id) {
+    case 'btnBuscar':
+      btnBuscar.click();
+      break;
+    case 'btnFiltrarCategoria':
+      btnFiltrar.click();
+      break;
+    case 'btnOrdenar':
+      btnOrdenar.click();
+      break;
+    case 'btnStock':
+      btnStock.click();
+      break;
+    case 'btnMostrarTodos':
+      btnMostrarTodos.click();
+      break;
+  }
+});
