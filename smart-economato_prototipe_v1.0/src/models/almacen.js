@@ -1,6 +1,8 @@
+// Módulo principal para la gestión del almacén
 import { productos } from './productos.js';
 import { filtrarPorCategoria, buscarProducto, ordenarPorPrecio, comprobarStockMinimo } from './funciones.js';
 
+//Elementos del DOM
 const controles = document.querySelector('.controles');
 const tabla = document.querySelector('#tablaProductos tbody');
 const resumen = document.querySelector('#resumen');
@@ -13,8 +15,10 @@ const btnMostrarTodos = document.querySelector('#btnMostrarTodos');
 const selectCategoria = document.querySelector('#categoriaSelect');
 const selectOrden = document.querySelector('#ordenSelect');
 
+//Estado actual de los productos mostrados
 let productosMostrados = [...productos];
 
+//Función para renderizar la tabla de productos
 function renderizarTabla(datos) {
   tabla.innerHTML = '';
   if (datos.length === 0) {
@@ -23,6 +27,7 @@ function renderizarTabla(datos) {
     return;
   }
 
+  // Crear filas de la tabla
   datos.forEach(p => {
     const fila = document.createElement('tr');
     if (p.stock < p.stockMinimo) fila.classList.add('alerta');
